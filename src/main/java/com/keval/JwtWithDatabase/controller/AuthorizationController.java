@@ -76,9 +76,9 @@ public class AuthorizationController {
 		UserDetails userDetails = this.userDetailService.loadUserByUsername(user.getEmail());
 		String token = this.jwtUtil.generateToken(userDetails);
 		Cookie cookie = new Cookie("jwtToken", "Bearer"+token);
-	    cookie.setMaxAge(300); // 24 hours
+	    cookie.setMaxAge(300); 
 	    cookie.setHttpOnly(true);
-	    cookie.setSecure(false); // Set to true if you're using HTTPS
+	    cookie.setSecure(false); 
 	    cookie.setPath("/");
 	    response.addCookie(cookie);
 	    if(userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
@@ -94,7 +94,7 @@ public class AuthorizationController {
 	    if (cookies != null) {
 	        for (Cookie cookie : cookies) {
 	            if (cookie.getName().equals("jwtToken")) {
-	            	cookie.setMaxAge(0); // set expiry time to 0 to remove cookie
+	            	cookie.setMaxAge(0); 
 	                cookie.setPath("/");
 	                response.addCookie(cookie);
 	            }

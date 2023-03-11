@@ -15,16 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.keval.JwtWithDatabase.service.UserDetailService;
-import com.keval.JwtWithDatabase.config.JwtAuthenticationEntryPoint;
-
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MySecurityConfig extends WebSecurityConfigurerAdapter{
-	
-	@Autowired
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
 	@Autowired
 	public UserDetailService userDetailService;
@@ -36,8 +31,6 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.csrf()
-		.disable()
-		.cors()
 		.disable()
 		.authorizeRequests()
 		.antMatchers("/login").permitAll()
